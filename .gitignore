@@ -1,2 +1,6 @@
-spider/
+spider_dataset/
 .DS_Store
+temp.ipynb
+gold.txt
+pred.txt
+test-suite-sql-eval
