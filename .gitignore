@@ -4,3 +4,4 @@ temp.ipynb
 gold.txt
 pred.txt
 test-suite-sql-eval
+logs/
