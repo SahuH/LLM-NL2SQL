@@ -3,8 +3,8 @@ import numpy as np
 from typing import Optional
 from datasets.arrow_dataset import Dataset
 from transformers.tokenization_utils_base import PreTrainedTokenizerBase
-from seq2seq.utils.dataset import DataTrainingArguments, normalize, serialize_schema
-from seq2seq.utils.trainer import Seq2SeqTrainer, EvalPrediction
+from models.utils.dataset import DataTrainingArguments, normalize, serialize_schema
+from models.utils.trainer import Seq2SeqTrainer, EvalPrediction
 
 
 def spider_get_input(

@@ -3,10 +3,10 @@ from typing import Union, List, Dict, Optional
 from transformers.pipelines.text2text_generation import ReturnType, Text2TextGenerationPipeline
 from transformers.tokenization_utils import TruncationStrategy
 from transformers.tokenization_utils_base import BatchEncoding
-from third_party.spider.preprocess.get_tables import dump_db_json_schema
-from seq2seq.utils.dataset import serialize_schema
-from seq2seq.utils.spider import spider_get_input
-from seq2seq.utils.cosql import cosql_get_input
+from models.utils.preprocess import dump_db_json_schema
+from models.utils.dataset import serialize_schema
+from models.utils.spider import spider_get_input
+from models.utils.cosql import cosql_get_input
 
 
 @dataclass

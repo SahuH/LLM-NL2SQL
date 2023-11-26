@@ -18,7 +18,7 @@
 import json
 import os
 from typing import List, Generator, Any, Dict, Tuple
-from third_party.spider.preprocess.get_tables import dump_db_json_schema
+from models.utils.preprocess import dump_db_json_schema
 import datasets
 
 

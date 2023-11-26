@@ -3,7 +3,7 @@ from dataclasses import dataclass, field
 from datasets.dataset_dict import DatasetDict
 from datasets.arrow_dataset import Dataset
 from transformers.training_args import TrainingArguments
-from seq2seq.utils.bridge_content_encoder import get_database_matches
+from models.utils.bridge_content_encoder import get_database_matches
 import re
 import random
 
