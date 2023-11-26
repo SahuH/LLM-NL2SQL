@@ -1,0 +1,12 @@
+datasets==1.8.0
+filelock==3.0.12
+nltk==3.6.2
+numpy==1.21.2
+packaging==21.0
+pyarrow==5.0.0
+requests==2.26.0
+sentencepiece==0.1.96
+tokenizers==0.10.3
+torch==1.9.0
+transformers==4.11.3
+tqdm==4.62.3
