@@ -1,0 +1,4 @@
+[submodule "third_party/spider"]
+	path = third_party/spider
+	url = https://github.com/elementai/spider
+
