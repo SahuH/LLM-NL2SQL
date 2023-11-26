@@ -18,9 +18,9 @@ from contextlib import nullcontext
 from alive_progress import alive_bar
 from transformers.hf_argparser import HfArgumentParser
 from transformers.models.auto import AutoConfig, AutoTokenizer, AutoModelForSeq2SeqLM
-from seq2seq.utils.pipeline import Text2SQLGenerationPipeline, Text2SQLInput
-from seq2seq.utils.picard_model_wrapper import PicardArguments, PicardLauncher, with_picard
-from seq2seq.utils.dataset import DataTrainingArguments
+from models.utils.pipeline import Text2SQLGenerationPipeline, Text2SQLInput
+from models.utils.picard_model_wrapper import PicardArguments, PicardLauncher, with_picard
+from models.utils.dataset import DataTrainingArguments
 
 
 @dataclass
