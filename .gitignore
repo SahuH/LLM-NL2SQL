@@ -1,8 +1,7 @@
 __pycache__
-spider_dataset/
 .DS_Store
-temp.ipynb
-gold.txt
-pred.txt
-test-suite-sql-eval
+spider_dataset/
+output/
 logs/
+temp.ipynb
+test-suite-sql-eval/
