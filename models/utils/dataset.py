@@ -138,11 +138,11 @@ class DataArguments:
     )
     dataset_paths: Dict[str, str] = field(
         default_factory=lambda: {
-            "spider": "./seq2seq/datasets/spider",
-            "cosql": "./seq2seq/datasets/cosql",
-            "spider_realistic": "./seq2seq/datasets/spider_realistic",
-            "spider_syn": "./seq2seq/datasets/spider_syn",
-            "spider_dk": "./seq2seq/datasets/spider_dk"
+            "spider": "./models/datasets/spider",
+            "cosql": "./models/datasets/cosql",
+            "spider_realistic": "./models/datasets/spider_realistic",
+            "spider_syn": "./models/datasets/spider_syn",
+            "spider_dk": "./models/datasets/spider_dk"
 
         },
         metadata={"help": "Paths of the dataset modules."},
@@ -154,11 +154,11 @@ class DataArguments:
     #we are referencing spider_realistic to spider metrics only as both use the main spider dataset as base.
     metric_paths: Dict[str, str] = field(
         default_factory=lambda: {
-            "spider": "./seq2seq/metrics/spider",
-            "spider_realistic" : "./seq2seq/metrics/spider",
-            "cosql": "./seq2seq/metrics/cosql",
-            "spider_syn":"./seq2seq/metrics/spider",
-            "spider_dk":"./seq2seq/metrics/spider"
+            "spider": "./models/metrics/spider",
+            "spider_realistic" : "./models/metrics/spider",
+            "cosql": "./models/metrics/cosql",
+            "spider_syn":"./models/metrics/spider",
+            "spider_dk":"./models/metrics/spider"
         },
         metadata={"help": "Paths of the metric modules."},
     )
