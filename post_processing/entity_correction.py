@@ -1,6 +1,7 @@
 import math
 import numpy as np
 import pandas as pd
+import argparse
 import re
 import json
 import difflib
@@ -85,27 +86,29 @@ def correct_columns(db_dict, db_id, pred):
   return pred
 
 
-schema_path = "../spider_dataset/tables.json"
-db_dict = get_entities(schema_path)     # Use 'col_set' from db_dict[<db_id>'] to match column names, 'table_names' from db_dict[<db_id>] to match table names
+if __name__ == "__main__":
+  parser = argparse.ArgumentParser()
+  parser.add_argument('--schemas_path', dest='schemas_path', type=str, default='../spider_dataset/tables.json', help="the path to tables.json")
+  parser.add_argument('--output_path', dest='output_path', type=str, default='../output/output.csv', help="the path to output.csv that containes gold, pred, db")
+  args = parser.parse_args()
 
+  db_dict = get_entities(args.schemas_path)     # Use 'col_set' from db_dict[<db_id>'] to match column names, 'table_names' from db_dict[<db_id>] to match table names
+  output = pd.read_csv(args.output_path)
 
-output = pd.read_csv('../output/output.csv')
+  preds_ec = []
+  for idx, row in output.iterrows():
+    db_id = row['db']
+    gold = row['gold']
+    pred = row['pred'].lower()
+    print(db_id)
+    print(pred)
+    try:
+      pred = correct_tables(db_dict, db_id, pred)
+      pred = correct_columns(db_dict, db_id, pred)
+    except:
+      pass
+    print(pred)
+    preds_ec.append(pred)
 
-preds_ec = []
-for idx, row in output.iterrows():
-  db_id = row['db']
-  gold = row['gold']
-  pred = row['pred'].lower()
-  print(db_id)
-  print(pred)
-  try:
-    pred = correct_tables(db_dict, db_id, pred)
-    pred = correct_columns(db_dict, db_id, pred)
-  except:
-    pass
-  print(pred)
-  preds_ec.append(pred)
-
-
-output['pred_ec'] = preds_ec
-output.to_csv('../output/output.csv', index=False)
+  output['pred_ec'] = preds_ec
+  output.to_csv(args.output_path, index=False)

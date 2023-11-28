@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import re
 import json
+import argparse
 
 
 def get_entities(schema_path):
@@ -80,23 +81,26 @@ def correct_table_reference(db_dict, db_id, pred):
   return pred
 
 
-schema_path = "../spider_dataset/tables.json"
-db_dict = get_entities(schema_path)     # Use 'col_set' from db_dict[<db_id>] to match column names, 'table_names' from db_dict[<db_id>] to match table names
+if __name__ == "__main__":
+  parser = argparse.ArgumentParser()
+  parser.add_argument('--schemas_path', dest='schemas_path', type=str, default='../spider_dataset/tables.json', help="the path to tables.json")
+  parser.add_argument('--output_path', dest='output_path', type=str, default='../output/output.csv', help="the path to output.csv that containes gold, pred, db")
+  args = parser.parse_args()
 
+  db_dict = get_entities(args.schemas_path)     # Use 'col_set' from db_dict[<db_id>'] to match column names, 'table_names' from db_dict[<db_id>] to match table names
+  output = pd.read_csv(args.output_path)
 
-output = pd.read_csv('../output/output.csv')
-row = output.iloc[0]
-preds_ec_trc = []
-for idx, row in output.iterrows():
-  db_id = row['db']
-  gold = row['gold']
-  pred = row['pred_ec'].lower()
-  print(db_id)
-  print(pred)
-  pred = correct_table_reference(db_dict, db_id, pred)
-  print(pred)
-  preds_ec_trc.append(pred)
+  row = output.iloc[0]
+  preds_ec_trc = []
+  for idx, row in output.iterrows():
+    db_id = row['db']
+    gold = row['gold']
+    pred = row['pred_ec'].lower()
+    print(db_id)
+    print(pred)
+    pred = correct_table_reference(db_dict, db_id, pred)
+    print(pred)
+    preds_ec_trc.append(pred)
 
-
-output['pred_ec_trc'] = preds_ec_trc
-output.to_csv('../output/output.csv', index=False)
+  output['pred_ec_trc'] = preds_ec_trc
+  output.to_csv(args.output_path, index=False)
