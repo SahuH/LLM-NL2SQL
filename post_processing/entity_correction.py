@@ -99,7 +99,7 @@ if __name__ == "__main__":
   for idx, row in output.iterrows():
     db_id = row['db']
     gold = row['gold']
-    pred = row['pred'].lower()
+    pred = row['pred_picard'].lower()
     print(db_id)
     print(pred)
     try:
@@ -110,5 +110,5 @@ if __name__ == "__main__":
     print(pred)
     preds_ec.append(pred)
 
-  output['pred_ec'] = preds_ec
+  output['pred_picard_ec'] = preds_ec
   output.to_csv(args.output_path, index=False)

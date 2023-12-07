@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 
 gold_file_path = '../output/gold.txt'
-pred_file_path = '../output/pred.txt'
+pred_file_path = '../output/pred_picard.txt'
 
 with open(gold_file_path, 'r') as gold_file, open(pred_file_path, 'r') as pred_file:
     gold_lst = gold_file.readlines()
@@ -23,5 +23,5 @@ for pred in pred_lst:
     pred_lst_1.append(pred)
 
 
-df = pd.DataFrame({'gold': gold_lst_1, 'db': db_lst, 'pred': pred_lst_1})
+df = pd.DataFrame({'gold': gold_lst_1, 'db': db_lst, 'pred_picard': pred_lst_1})
 df.to_csv('../output/output.csv', index=False)

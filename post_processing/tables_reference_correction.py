@@ -95,12 +95,12 @@ if __name__ == "__main__":
   for idx, row in output.iterrows():
     db_id = row['db']
     gold = row['gold']
-    pred = row['pred_ec'].lower()
+    pred = row['pred_picard_ec'].lower()
     print(db_id)
     print(pred)
     pred = correct_table_reference(db_dict, db_id, pred)
     print(pred)
     preds_ec_trc.append(pred)
 
-  output['pred_ec_trc'] = preds_ec_trc
+  output['pred_picard_ec_trc'] = preds_ec_trc
   output.to_csv(args.output_path, index=False)
