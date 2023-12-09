@@ -7,9 +7,9 @@ build-type: Custom
 
 custom-setup
   setup-depends:
-      base >= 4 && <5
+      base >=4.11.1.0 && <4.15
     , Cabal
-    , cabal-doctest >= 1 && <1.1
+    , cabal-doctest
 
 library
   exposed-modules:
@@ -101,7 +101,7 @@ test-suite doctests
   build-depends:
       base
     , base-compat
-    , doctest >=0.15 && <0.18
+    , doctest
     , picard
 
   ghc-options: -Wall -threaded

@@ -22,12 +22,11 @@ python test-suite-sql-eval/evaluation.py --gold gold.txt --pred pred.txt --db sp
 
 ## Use Pre-trained T5
 
-Run `T5_inferencing.py` (`gold.txt` and `pred.txt` will be generated)
+Run `models/T5_inferencing.py` (`gold.txt` and `pred.txt` will be generated)
 
 ## Fine Tuning T5 with schema
 
-Run `Finetuning_T5.py` (`gold.txt` and `pred.txt` will be generated)
-
+Run `models/Finetuning_T5.py` (`gold.txt` and `pred.txt` will be generated)
 
 
 -------
