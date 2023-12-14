@@ -1,9 +1,4 @@
-ARG BASE_IMAGE
-
-# ------------------------
-# Target: dev
-# ------------------------
-FROM $BASE_IMAGE as dev
+FROM pytorch/pytorch:1.9.0-cuda11.1-cudnn8-devel as dev
 
 ARG TOOLKIT_USER_ID=13011
 ARG TOOLKIT_GROUP_ID=13011
@@ -289,8 +284,7 @@ ARG TOOLKIT_GROUP_ID=13011
 ENV HF_HOME=/transformers_cache
 
 # Copy Seq-to-seq code
-COPY --chown=$TOOLKIT_USER_ID:$TOOLKIT_GROUP_ID ./seq2seq /app/seq2seq/
-COPY --chown=$TOOLKIT_USER_ID:$TOOLKIT_GROUP_ID ./tests /app/tests/
+COPY --chown=$TOOLKIT_USER_ID:$TOOLKIT_GROUP_ID ./models/picard_runner /app/models/picard_runner
 COPY --chown=$TOOLKIT_USER_ID:$TOOLKIT_GROUP_ID ./third_party/spider /app/third_party/spider/
 COPY --chown=$TOOLKIT_USER_ID:$TOOLKIT_GROUP_ID ./third_party/test_suite /app/third_party/test_suite/
 COPY --chown=$TOOLKIT_USER_ID:$TOOLKIT_GROUP_ID ./configs /app/configs/
@@ -341,7 +335,7 @@ RUN cabal update \
 ENV HF_HOME=/transformers_cache
 
 # Copy Seq-to-seq code
-COPY --chown=$TOOLKIT_USER_ID:$TOOLKIT_GROUP_ID ./seq2seq /app/seq2seq/
+COPY --chown=$TOOLKIT_USER_ID:$TOOLKIT_GROUP_ID ./models/picard_runner /app/models/picard_runner
 COPY --chown=$TOOLKIT_USER_ID:$TOOLKIT_GROUP_ID ./tests /app/tests/
 COPY --chown=$TOOLKIT_USER_ID:$TOOLKIT_GROUP_ID ./third_party/spider /app/third_party/spider/
 COPY --chown=$TOOLKIT_USER_ID:$TOOLKIT_GROUP_ID ./third_party/test_suite /app/third_party/test_suite/
@@ -349,5 +343,5 @@ COPY --chown=$TOOLKIT_USER_ID:$TOOLKIT_GROUP_ID ./configs /app/configs/
 
 # Test Picard
 RUN python /app/tests/test_picard_client.py \
-    && rm -rf /app/seq2seq/__pycache__ \
+    && rm -rf /app/models/picard_runner/__pycache__ \
     && rm -rf /app/gen-py3/picard/__pycache__
