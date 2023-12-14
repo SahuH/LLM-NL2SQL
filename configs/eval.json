@@ -1,6 +1,6 @@
 {
     "run_name": "spider-picard_testing",
-    "model_name_or_path": "",
+    "model_name_or_path": "hrshtsharma2012/NL2SQL-Picard-final",
     "dataset": "spider",
     "source_prefix": "",
     "schema_serialization_type": "peteshaw",
