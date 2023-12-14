@@ -6,7 +6,7 @@ from datasets.arrow_dataset import Dataset
 from transformers.training_args import TrainingArguments
 from .bridge_content_encoder import get_database_matches
 from .lgerels2t5rels import preprocessing_dataset_split
-from models.picard_runner.rasat.preprocess.choose_dataset import preprocess_by_dataset
+from picard_runner.rasat.preprocess.choose_dataset import preprocess_by_dataset
 import re
 import random
 
@@ -149,10 +149,10 @@ class DataArguments:
     )
     dataset_paths: Dict[str, str] = field(
         default_factory=lambda: {
-            "spider": "./models/picard_runner/datasets/spider",
-            "sparc": "./models/picard_runner/datasets/sparc",
-            "cosql": "./models/picard_runner/datasets/cosql",
-            "spider_dk": "./models/picard_runner/datasets/spider_dk",
+            "spider": "./picard_runner/datasets/spider",
+            "sparc": "./picard_runner/datasets/sparc",
+            "cosql": "./picard_runner/datasets/cosql",
+            "spider_dk": "./picard_runner/datasets/spider_dk",
         },
         metadata={"help": "Paths of the dataset modules."},
     )
@@ -162,10 +162,10 @@ class DataArguments:
     )
     metric_paths: Dict[str, str] = field(
         default_factory=lambda: {
-            "spider": "./models/picard_runner/metrics/spider",
-            "sparc": "./models/picard_runner/metrics/sparc",
-            "cosql": "./models/picard_runner/metrics/cosql",
-            "spider_dk": "./models/picard_runner/metrics/spider",
+            "spider": "./picard_runner/metrics/spider",
+            "sparc": "./picard_runner/metrics/sparc",
+            "cosql": "./picard_runner/metrics/cosql",
+            "spider_dk": "./picard_runner/metrics/spider",
         },
         metadata={"help": "Paths of the metric modules."},
     )

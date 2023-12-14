@@ -16,7 +16,7 @@ import torch.nn as nn
 from transformers.deepspeed import is_deepspeed_zero3_enabled
 from packaging import version
 
-# from models.picard_runner.utils.custom_lr_scheduler import get_scheduler_custom
+# from picard_runner.utils.custom_lr_scheduler import get_scheduler_custom
 if version.parse(torch.__version__) >= version.parse("1.6"):
     from torch.cuda.amp import autocast
 

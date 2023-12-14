@@ -24,17 +24,17 @@ from transformers.models.t5.modeling_t5 import T5ForConditionalGeneration
 from transformers.models.t5.tokenization_t5_fast import T5TokenizerFast
 from transformers.tokenization_utils_fast import PreTrainedTokenizerFast
 from tokenizers import AddedToken
-from models.picard_runner.utils.args import ModelArguments
-from models.picard_runner.utils.picard_model_wrapper import PicardArguments, PicardLauncher, with_picard
-from models.picard_runner.utils.dataset import DataTrainingArguments, DataArguments
-from models.picard_runner.utils.dataset_loader import load_dataset
-from models.picard_runner.utils.spider import SpiderTrainer
-from models.picard_runner.utils.cosql import CoSQLTrainer
+from picard_runner.utils.args import ModelArguments
+from picard_runner.utils.picard_model_wrapper import PicardArguments, PicardLauncher, with_picard
+from picard_runner.utils.dataset import DataTrainingArguments, DataArguments
+from picard_runner.utils.dataset_loader import load_dataset
+from picard_runner.utils.spider import SpiderTrainer
+from picard_runner.utils.cosql import CoSQLTrainer
 
-from models.picard_runner.rasat.model.t5_relation_model import T5ForConditionalGeneration as T5_Relation
-from models.picard_runner.rasat.preprocess.get_relation2id_dict import get_relation2id_dict
-from models.picard_runner.rasat.utils.custom_picard_model_wrapper import with_picard as rasat_with_picard
-from models.picard_runner.rasat.utils.relation_data_collator import DataCollatorForSeq2Seq as RASATDataCollator
+from picard_runner.rasat.model.t5_relation_model import T5ForConditionalGeneration as T5_Relation
+from picard_runner.rasat.preprocess.get_relation2id_dict import get_relation2id_dict
+from picard_runner.rasat.utils.custom_picard_model_wrapper import with_picard as rasat_with_picard
+from picard_runner.rasat.utils.relation_data_collator import DataCollatorForSeq2Seq as RASATDataCollator
 import torch
 
 # Necessary to prevent "HTTP Error 403: rate limit exceeded" with PyTorch 1.9.0
@@ -86,6 +86,7 @@ def main() -> None:
         if "MLFLOW_EXPERIMENT_ID" in os.environ:
             init_args["group"] = os.environ["MLFLOW_EXPERIMENT_ID"]
         wandb.init(
+            mode="offline",
             project=os.getenv("WANDB_PROJECT", "text-to-sql"),
             name=training_args.run_name,
             **init_args,

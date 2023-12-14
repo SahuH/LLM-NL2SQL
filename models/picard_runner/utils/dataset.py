@@ -1,8 +1,8 @@
 from dataclasses import dataclass, field
 from datasets.arrow_dataset import Dataset
 from datasets.dataset_dict import DatasetDict
-from models.picard_runner.rasat.preprocess.choose_dataset import preprocess_by_dataset
-from models.picard_runner.utils.bridge_content_encoder import get_database_matches
+from picard_runner.rasat.preprocess.choose_dataset import preprocess_by_dataset
+from picard_runner.utils.bridge_content_encoder import get_database_matches
 from transformers.training_args import TrainingArguments
 from typing import Optional, List, Dict, Callable
 import re
@@ -161,15 +161,15 @@ class DataArguments:
     )
     dataset_paths: Dict[str, str] = field(
         default_factory=lambda: {
-            "spider": "./models/picard_runner/datasets/spider",
-            "spider_dk": "./models/picard_runner/datasets/spider_dk",
-            "spider_syn": "./models/picard_runner/datasets/spider_syn",
-            "spider_dates": "./models/picard_runner/datasets/spider_dates",
-            "dk_spider_dates": "./models/picard_runner/datasets/dk_spider_dates",
-            "spider_desc": "./models/picard_runner/datasets/spider_desc",
-            "cosql": "./models/picard_runner/datasets/cosql",
-            "datasaur": "./models/picard_runner/datasets/datasaur",
-            "spider_realistic": "./models/picard_runner/datasets/spider_realistic",
+            "spider": "./picard_runner/datasets/spider",
+            "spider_dk": "./picard_runner/datasets/spider_dk",
+            "spider_syn": "./picard_runner/datasets/spider_syn",
+            "spider_dates": "./picard_runner/datasets/spider_dates",
+            "dk_spider_dates": "./picard_runner/datasets/dk_spider_dates",
+            "spider_desc": "./picard_runner/datasets/spider_desc",
+            "cosql": "./picard_runner/datasets/cosql",
+            "datasaur": "./picard_runner/datasets/datasaur",
+            "spider_realistic": "./picard_runner/datasets/spider_realistic",
 
         },
         metadata={"help": "Paths of the dataset modules."},
@@ -181,15 +181,15 @@ class DataArguments:
     #we are referencing spider_realistic to spider metrics only as both use the main spider dataset as base.
     metric_paths: Dict[str, str] = field(
         default_factory=lambda: {
-            "spider": "./models/picard_runner/metrics/spider",
-            "spider_dk":"./models/picard_runner/metrics/spider",
-            "spider_syn":"./models/picard_runner/metrics/spider",
-            "spider_dates": "./models/picard_runner/metrics/spider",
-            "dk_spider_dates": "./models/picard_runner/metrics/spider",
-            "spider_desc": "./models/picard_runner/metrics/spider",
-            "cosql": "./models/picard_runner/metrics/cosql",
-            "datasaur": "./models/picard_runner/metrics/datasaur",
-            "spider_realistic" : "./models/picard_runner/metrics/spider",
+            "spider": "./picard_runner/metrics/spider",
+            "spider_dk":"./picard_runner/metrics/spider",
+            "spider_syn":"./picard_runner/metrics/spider",
+            "spider_dates": "./picard_runner/metrics/spider",
+            "dk_spider_dates": "./picard_runner/metrics/spider",
+            "spider_desc": "./picard_runner/metrics/spider",
+            "cosql": "./picard_runner/metrics/cosql",
+            "datasaur": "./picard_runner/metrics/datasaur",
+            "spider_realistic" : "./picard_runner/metrics/spider",
         },
         metadata={"help": "Paths of the metric modules."},
     )

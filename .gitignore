@@ -6,3 +6,6 @@ logs/
 temp.ipynb
 test-suite-sql-eval/
 dataset_files
+eval
+wandb
+transformers_cache

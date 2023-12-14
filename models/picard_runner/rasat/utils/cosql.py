@@ -3,8 +3,8 @@ import numpy as np
 from typing import Optional, List
 from datasets.arrow_dataset import Dataset
 from transformers.tokenization_utils_base import PreTrainedTokenizerBase
-from models.picard_runner.utils.dataset import DataTrainingArguments, normalize, serialize_schema
-from models.picard_runner.utils.trainer import Seq2SeqTrainer, EvalPrediction
+from picard_runner.utils.dataset import DataTrainingArguments, normalize, serialize_schema
+from picard_runner.utils.trainer import Seq2SeqTrainer, EvalPrediction
 
 
 def cosql_get_input(

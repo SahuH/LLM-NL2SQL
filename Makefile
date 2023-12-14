@@ -20,5 +20,5 @@ eval:
 			--mount type=bind,source=$(BASE_DIR)/eval,target=/eval \
 			--mount type=bind,source=$(BASE_DIR)/dataset_files,target=/app/dataset_files \
 			$(IMAGE_NAME):$(IMAGE_TAG) \
-			# /bin/bash -c "python picard_runner/run_picard.py configs/eval.json"
+			/bin/bash -c "pip install stanza && python picard_runner/run_picard.py configs/eval.json"
 

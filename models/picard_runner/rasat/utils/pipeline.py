@@ -4,9 +4,9 @@ from transformers.pipelines.text2text_generation import ReturnType, Text2TextGen
 from transformers.tokenization_utils import TruncationStrategy
 from transformers.tokenization_utils_base import BatchEncoding
 from third_party.spider.preprocess.get_tables import dump_db_json_schema
-from models.picard_runner.utils.dataset import serialize_schema
-from models.picard_runner.utils.spider import spider_get_input
-from models.picard_runner.utils.cosql import cosql_get_input
+from picard_runner.utils.dataset import serialize_schema
+from picard_runner.utils.spider import spider_get_input
+from picard_runner.utils.cosql import cosql_get_input
 
 
 @dataclass

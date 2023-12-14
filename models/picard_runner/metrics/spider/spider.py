@@ -1,8 +1,8 @@
 """Spider metrics."""
 
 from typing import Optional, Union
-from models.picard_runner.metrics.spider.spider_test_suite import compute_test_suite_metric
-from models.picard_runner.metrics.spider.spider_exact_match import compute_exact_match_metric
+from picard_runner.metrics.spider.spider_test_suite import compute_test_suite_metric
+from picard_runner.metrics.spider.spider_exact_match import compute_exact_match_metric
 import datasets
 
 

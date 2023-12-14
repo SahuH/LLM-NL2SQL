@@ -22,7 +22,7 @@ from transformers.models.auto import AutoModelForSeq2SeqLM, MODEL_FOR_SEQ_TO_SEQ
 from transformers import T5ForConditionalGeneration as T5_Pretrained
 import logging
 
-from models.picard_runner.rasat.model.t5_relation_config import RASATConfig
+from picard_runner.rasat.model.t5_relation_config import RASATConfig
 
 logger = logging.getLogger(__name__)
 
