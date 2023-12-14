@@ -22,12 +22,27 @@ python test-suite-sql-eval/evaluation.py --gold gold.txt --pred pred.txt --db sp
 
 ## Use Pre-trained T5
 
-Run `models/T5_inferencing.py` (`gold.txt` and `pred.txt` will be generated)
+Run `notebooks/inference_testing.ipynb` (`gold.txt` and `pred.txt` will be generated)
 
 ## Fine Tuning T5 with schema
 
-Run `models/Finetuning_T5.py` (`gold.txt` and `pred.txt` will be generated)
+Run `notebooks/Finetuning_T5.ipynb` (`gold.txt` and `pred.txt` will be generated)
 
+-------
+
+## Post-processing
+* Create `output.csv` from `gold.txt` and `pred.txt`:
+```
+python create_output_csv.py
+```
+* Apply table/column name correction on predictions in `output.csv`:
+```
+python ./post_processing/entity_correction.py <path to tables.json> <path to output.csv> 
+```
+* Apply table aliasing correction on predictions in `output.csv`:
+```
+python ./post_processing/tables_alias_correction.py <path to tables.json> <path to output.csv> 
+```
 
 -------
 
