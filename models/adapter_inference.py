@@ -9,8 +9,6 @@ from datasets import load_dataset, load_metric
 nltk.download('punkt')
 
 
-spider_dataset = load_dataset("spider")
-
 tokenizer = T5Tokenizer.from_pretrained('t5-base')
 model_path = 't5finetuned'
 adapter_path = 'adapternlp2sql'
@@ -71,38 +69,42 @@ def get_sql_with_schema(query, schema):
     return decoded_output.replace('<pad>', '').strip()
 
 
-gold_file = open('gold.txt', 'w')
-pred_file = open('pred.txt', 'w')
+if __name__=="__main__":
+    # Using spider dataset from huggingface datasets library (and not the one stored in local)
+    spider_dataset = load_dataset('spider')
 
-count = 0
-for idx in range(len(val_dataset)):
-    item = val_dataset[idx]
-    # Access the original data using idx to get question and db_id
-    question = val_dataset.data[idx]['question']
-    db_id = val_dataset.data[idx]['db_id']
-    gold_query = val_dataset.data[idx]['query']  # Assuming 'query' is the correct key for the SQL query
+    with open('dataset_files/ori_dataset/spider/tables.json', 'r') as f:
+        tables_data = json.load(f)
 
-    print(f'{idx + 1}/{len(val_dataset)}')
-    print(f"Text: {question}")
+    train_dataset = SpiderDataset(spider_dataset['train'], tokenizer, max_length=128)
+    val_dataset = SpiderDataset(spider_dataset['validation'], tokenizer, max_length=128)
 
-    # Get schema information
-    schema = val_dataset.get_schema(db_id)
-
-    pred_query = get_sql_with_schema(question, schema)
-
-    gold_file.write(gold_query + '\t' + db_id + '\n')
-    pred_file.write(pred_query + '\n')
+    gold_file = open('gold.txt', 'w')
+    pred_file = open('pred.txt', 'w')
     
-    print(f"Pred SQL: {pred_query}")
-    print(f"True SQL: {gold_query}\n")
-    count += 1
-gold_file.close()
-pred_file.close()
-# Load tables.json
-with open('tables.json', 'r') as f:
-    tables_data = json.load(f)
+    count = 0
+    for idx in range(len(val_dataset)):
+        item = val_dataset[idx]
+        # Access the original data using idx to get question and db_id
+        question = val_dataset.data[idx]['question']
+        db_id = val_dataset.data[idx]['db_id']
+        gold_query = val_dataset.data[idx]['query']  # Assuming 'query' is the correct key for the SQL query
+    
+        print(f'{idx + 1}/{len(val_dataset)}')
+        print(f"Text: {question}")
+    
+        # Get schema information
+        schema = val_dataset.get_schema(db_id)
+    
+        pred_query = get_sql_with_schema(question, schema)
+    
+        gold_file.write(gold_query + '\t' + db_id + '\n')
+        pred_file.write(pred_query + '\n')
+        
+        print(f"Pred SQL: {pred_query}")
+        print(f"True SQL: {gold_query}\n")
+        count += 1
+    gold_file.close()
+    pred_file.close()
 
 
-
-train_dataset = SpiderDataset(spider_dataset['train'], tokenizer, max_length=128)
-val_dataset = SpiderDataset(spider_dataset['validation'], tokenizer, max_length=128)
