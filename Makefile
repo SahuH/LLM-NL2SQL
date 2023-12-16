@@ -27,7 +27,7 @@ eval:
 
 		
 		@echo "Running outputeval.py..."
-		python /models/picard_runner/utils/output.py $(BASE_DIR)/eval/predictions_eval_None.json
+		python /models/picard_runner/utils/outputeval.py $(BASE_DIR)/eval/predictions_eval_None.json
 
 		
 		@echo "Running the evaluation command..."
