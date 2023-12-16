@@ -70,8 +70,36 @@ if __name__=="__main__":
     # Using spider dataset from huggingface datasets library (and not the one stored in local)
     spider_dataset = load_dataset('spider')
 
-    with open('./spider_dataset/tables.json', 'r') as f:
+    with open('dataset_files/ori_dataset/spider/tables.json', 'r') as f:
         tables_data = json.load(f)
 
     train_dataset = SpiderDataset(spider_dataset['train'], tokenizer, max_length=128)
     val_dataset = SpiderDataset(spider_dataset['validation'], tokenizer, max_length=128)
+
+    gold_file = open('gold.txt', 'w')
+    pred_file = open('pred.txt', 'w')
+    
+    count = 0
+    for idx in range(len(val_dataset)):
+        item = val_dataset[idx]
+        # Access the original data using idx to get question and db_id
+        question = val_dataset.data[idx]['question']
+        db_id = val_dataset.data[idx]['db_id']
+        gold_query = val_dataset.data[idx]['query']  # Assuming 'query' is the correct key for the SQL query
+    
+        print(f'{idx + 1}/{len(val_dataset)}')
+        print(f"Text: {question}")
+    
+        # Get schema information
+        schema = val_dataset.get_schema(db_id)
+    
+        pred_query = get_sql_with_schema(question, schema)
+    
+        gold_file.write(gold_query + '\t' + db_id + '\n')
+        pred_file.write(pred_query + '\n')
+        
+        print(f"Pred SQL: {pred_query}")
+        print(f"True SQL: {gold_query}\n")
+        count += 1
+    gold_file.close()
+    pred_file.close()
