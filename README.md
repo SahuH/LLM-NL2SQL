@@ -44,12 +44,6 @@ Run `models/finetuned_inference.py` (`gold.txt` and `pred.txt` will be generated
 Run `models/adapter_inference.py` (`gold.txt` and `pred.txt` will be generated)
 
 
-#### TBD: New running commands go here: model to results pipeline
-
-
-Run `notebooks/inference_testing.ipynb` (`gold.txt` and `pred.txt` will be generated)
-
-
 
 
 -------
@@ -72,12 +66,6 @@ sh ./download_datasets.sh
 ```
 make eval
 
-
-## Post processing Code goes here
-git clone https://github.com/taoyds/test-suite-sql-eval.git
-
-
-python test-suite-sql-eval/evaluation.py --gold gold.txt --pred pred.txt --db spider_dataset/database --table spider_dataset/tables.json --etype all
 ```
 
 
