@@ -22,3 +22,16 @@ eval:
 			$(IMAGE_NAME):$(IMAGE_TAG) \
 			/bin/bash -c "pip install stanza && python picard_runner/run_picard.py configs/eval.json"
 
+		@echo "Decompressing predictions_eval_None.json.gz..."
+		gzip -d $(BASE_DIR)/eval/predictions_eval_None.json.gz
+
+		
+		@echo "Running outputeval.py..."
+		python /models/picard_runner/utils/output.py $(BASE_DIR)/eval/predictions_eval_None.json
+
+		
+		@echo "Running the evaluation command..."
+		python test-suite-sql-eval/evaluation.py --gold $(BASE_DIR)/eval/gold.txt --pred $(BASE_DIR)/eval/pred.txt --db spider_dataset/database --table spider_dataset/tables.json --etype all
+
+		@echo "Evaluation completed"
+
