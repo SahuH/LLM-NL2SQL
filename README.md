@@ -15,8 +15,33 @@ Enhance natural language to SQL conversion accuracy using T5, a transformer-base
 
 ## Deployment
 
+### Fine Tuning T5 with schema
 
-### Use Pre-trained T5
+Run `models/t5finetuning.py` 
+
+### Adapter Training
+
+Run `models/adaptertraining.py` 
+
+
+### Download Finetuned T5
+```
+git lfs install
+git clone https://huggingface.co/anmolsharma142/t5finetuned
+```
+### Download Trained adapter
+```
+git clone https://huggingface.co/anmolsharma142/adapternlp2sql
+```
+### Inference from finetuned T5
+
+
+Run `models/finetuned_inference.py` (`gold.txt` and `pred.txt` will be generated)
+
+### Inference from Adapter
+
+
+Run `models/adapter_inference.py` (`gold.txt` and `pred.txt` will be generated)
 
 
 #### TBD: New running commands go here: model to results pipeline
@@ -25,10 +50,6 @@ Enhance natural language to SQL conversion accuracy using T5, a transformer-base
 Run `notebooks/inference_testing.ipynb` (`gold.txt` and `pred.txt` will be generated)
 
 
-### Fine Tuning T5 with schema
-
-
-Run `notebooks/Finetuning_T5.ipynb` (`gold.txt` and `pred.txt` will be generated)
 
 
 -------
