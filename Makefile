@@ -31,7 +31,7 @@ eval:
 
 		
 		@echo "Running the evaluation command..."
-		python test-suite-sql-eval/evaluation.py --gold $(BASE_DIR)/eval/gold.txt --pred $(BASE_DIR)/eval/pred.txt --db spider_dataset/database --table spider_dataset/tables.json --etype all
+		python test-suite-sql-eval/evaluation.py --gold $(BASE_DIR)/eval/gold.txt --pred $(BASE_DIR)/eval/pred.txt --db dataset_files/ori_dataset/database --table dataset_files/ori_dataset/tables.json --etype all
 
 		@echo "Evaluation completed"
 
