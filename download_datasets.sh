@@ -1,6 +1,6 @@
 #!/bin/bash
 PATH=~/.local/bin:$PATH
-. ~/.profile
+
 pip install gdown
 
 mkdir -p dataset_files/ori_dataset
