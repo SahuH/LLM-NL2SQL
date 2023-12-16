@@ -43,6 +43,10 @@ Certain extra software support is required for the deployment of the haskell bas
 #### Docker: Use Pre-Built
 Since, building image can take up time. The script has been also set to a desired dockerhub image which contains all the necessary library support for running the code and generating output. Before deployment, the model name and other params can be set in `configs/eval.json`. Below is the simple command that should run the code in docker, evaluate it through test suite and return the results in the desired format:
 
+```
+# Download dataset (run only once)
+sh ./download_datasets.sh
+```
 
 ```
 make eval
